@@ -59,7 +59,7 @@ const CreateTournament = () => {
                 </div>
               </div>
 
-              <div className="form-section-title">Sport</div>
+              <div className="form-section-title">Discipline</div>
               <div className="sport-selector">
                 {['Cricket', 'Football', 'Basketball', 'Volleyball'].map((s) => (
                   <div 

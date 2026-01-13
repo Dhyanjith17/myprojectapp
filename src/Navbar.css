@@ -1,0 +1,22 @@
+.user-welcome {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-right: 15px;
+}
+
+.logout-btn {
+  background: #ef4444; /* Red for logout */
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}

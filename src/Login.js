@@ -2,16 +2,21 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    e.preventDefault();
-    // Simulate a successful login
-    alert("Login Successful!");
-    navigate('/selection'); 
-  };
-
+  e.preventDefault();
+  const email = e.target[0].value;
+  
+  if (email === "admin@winner.com") {
+    onLogin('admin'); // Set role to admin
+    navigate('/admin/dashboard');
+  } else {
+    onLogin('user'); // Set role to user
+    navigate('/selection');
+  }
+};
   return (
     <div className="auth-container">
       <div className="auth-card">

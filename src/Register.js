@@ -2,13 +2,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
-const Register = () => {
+const Register = ({ onRegister }) => {
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // Simulate a successful registration
+    
+    // 1. Trigger the global login state in App.js
+    onRegister();
+
+    // 2. Simulate a successful registration
     alert("Account Created Successfully!");
+    
+    // 3. Navigate to the dashboard
     navigate('/selection');
   };
 

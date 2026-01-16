@@ -1,23 +1,12 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SelectionPage.css';
 
-const SelectionPage = () => {
+const SelectionPage = ({ userRole }) => {
   const navigate = useNavigate();
 
   return (
     <div className="dashboard-wrapper">
-      {/* Navbar Section */}
-      <nav className="navbar">
-        <Link to="/" className="logo">Winner</Link>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/tournaments">Tournaments</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register" className="nav-reg">Register</Link>
-        </div>
-      </nav>
-
       {/* Hero Header */}
       <header className="dash-header">
         <h1>Management Console</h1>
@@ -29,7 +18,6 @@ const SelectionPage = () => {
         {/* Primary Action: Create */}
         <div className="bento-item large create" onClick={() => navigate('/admin/create-tournament')}>
           <div className="bento-content">
-            <span className="bento-tag">Admin</span>
             <h3>Create Tournament</h3>
             <p>Configure sports, rules, entry fees, and organizer details in a multi-step builder.</p>
             <div className="bento-icon">🏆</div>
@@ -39,7 +27,6 @@ const SelectionPage = () => {
         {/* Primary Action: View */}
         <div className="bento-item medium browse" onClick={() => navigate('/tournaments')}>
           <div className="bento-content">
-            <span className="bento-tag">User</span>
             <h3>Browse Events</h3>
             <p>Search and filter active tournaments across all sports.</p>
             <div className="bento-icon">🔍</div>
@@ -64,14 +51,25 @@ const SelectionPage = () => {
           </div>
         </div>
 
-        {/* Future Module: Analytics */}
-        <div className="bento-item small analytics">
-          <div className="bento-content">
-            <span className="bento-tag upcoming">Upcoming</span>
-            <h3>Leaderboards</h3>
-            <p>Track points and top performers.</p>
+        {/* CONDITIONAL CARD: Shows Admin Dashboard if user is admin, otherwise Leaderboards */}
+        {userRole === 'admin' ? (
+          <div className="bento-item small admin-panel" onClick={() => navigate('/admin/dashboard')} style={{ border: '2px solid #2ecc71' }}>
+            <div className="bento-content">
+              <span className="bento-tag" style={{ background: '#2ecc71', color: 'white' }}>Admin Only</span>
+              <h3>Approvals</h3>
+              <p>Review pending tournaments.</p>
+              <div className="bento-icon" style={{ fontSize: '2rem' }}>⚙️</div>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="bento-item small analytics">
+            <div className="bento-content">
+              <span className="bento-tag upcoming">Upcoming</span>
+              <h3>Leaderboards</h3>
+              <p>Track points and top performers.</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
